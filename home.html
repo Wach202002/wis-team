@@ -1,0 +1,161 @@
+<?php
+require_once __DIR__."/../config/database.php";
+require_once __DIR__."/../../theme/head.php";
+require_once __DIR__."/../../theme/header.php";
+?>
+ <?php
+					if(isset($_SESSION['user'])){
+						?>
+						<div class="content">
+        <div class="content">
+      <div class="container-fluid">
+  <div class="c-content">
+    <h3 class="mt-4 font-weight-bold text-center text-danger">DANH MỤC DỊCH VỤ</h3>
+    <div class="bg-danger c-line"></div>
+  </div>
+  <!-- Hết Banner -->
+  <!-- Danh mục -->
+  <div class="danhmuc">
+    <div class="row">
+        <?php
+		$result = mysqli_query($connect, "SELECT * FROM thongtin");
+		while($row = mysqli_fetch_assoc($result)){
+			?>
+	  <!-- Thẻ 1 -->
+      <div class="col-md-3 col-lg-3 col-6 col-sm-6 mt-3">
+        <div class="card card-chart">
+          <div class="card-header card-header-rose" data-header-animation="true">
+               <img src="<?php echo $row['danhmuc1']; ?>" class="card-img-top" alt="HOANGNAM_DEV"
+          />
+          </div>
+          <div class="card-body">
+              <h4 class="card-title text-center">Tạo WEB</h4>
+              <p class="card-category">Dễ dàn tạo 1 trang web chỉ trong vài bước.</p>
+          </div>
+          <div class="card-footer">
+              <a href="/tao-trang-web" class="btn btn-primary btn-rounded" style="width:100%;background: linear-gradient(
+        45deg,
+        rgba(29, 236, 197, 0.5),
+        rgba(91, 14, 214, 0.5) 100%
+      );">Xem ngay</a>
+          </div>
+      </div>
+    </div>
+    <!-- Hết Thẻ 1 -->
+     <!-- Thẻ 2 -->
+      <div class="col-md-3 col-lg-3 col-6 col-sm-6 mt-3">
+        <div class="card card-chart">
+          <div class="card-header card-header-rose" data-header-animation="true">
+               <img src="<?php echo $row['danhmuc2']; ?>" class="card-img-top" alt="HOANGNAM_DEV"
+          />
+          </div>
+          <div class="card-body">
+              <h4 class="card-title text-center">Source Code</h4>
+              <p class="card-category">Mua 1 source cực kì dễ và nhanh chóng.</p>
+          </div>
+          <div class="card-footer">
+              <a href="/mua-source-code" class="btn btn-primary btn-rounded" style="width:100%;background: linear-gradient(
+        45deg,
+        rgba(29, 236, 197, 0.5),
+        rgba(91, 14, 214, 0.5) 100%
+      );">Xem ngay</a>
+          </div>
+      </div>
+    </div>
+    <!-- Hết Thẻ 2-->
+       <!-- Thẻ 3 -->
+      <div class="col-md-3 col-lg-3 col-6 col-sm-6 mt-3">
+        <div class="card card-chart">
+          <div class="card-header card-header-rose" data-header-animation="true">
+               <img src="<?php echo $row['danhmuc3']; ?>" class="card-img-top" alt="HOANGNAM_DEV"
+          />
+          </div>
+          <div class="card-body">
+              <h4 class="card-title text-center">Mua Hosting</h4>
+              <p class="card-category">Mua Hosting Giá Rẻ</p>
+          </div>
+          <div class="card-footer">
+              <a href="/mua-hosting" class="btn btn-primary btn-rounded" style="width:100%;background: linear-gradient(
+        45deg,
+        rgba(29, 236, 197, 0.5),
+        rgba(91, 14, 214, 0.5) 100%
+      );">Xem ngay</a>
+          </div>
+      </div>
+    </div>
+    <!-- Hết Thẻ 3-->
+       <!-- Thẻ 4 -->
+      <div class="col-md-3 col-lg-3 col-6 col-sm-6 mt-3">
+        <div class="card card-chart">
+          <div class="card-header card-header-rose" data-header-animation="true">
+               <img src="<?php echo $row['danhmuc4']; ?>" class="card-img-top" alt="HOANGNAM_DEV"
+          />
+          </div>
+          <div class="card-body">
+              <h4 class="card-title text-center">Mua Domain</h4>
+              <p class="card-category">Mua Domain Giá Rẻ</p>
+          </div>
+          <div class="card-footer">
+              <a href="/mua-domain" class="btn btn-primary btn-rounded" style="width:100%;background: linear-gradient(
+        45deg,
+        rgba(29, 236, 197, 0.5),
+        rgba(91, 14, 214, 0.5) 100%
+      );">Xem ngay</a>
+          </div>
+      </div>
+    </div>
+    <!-- Hết Thẻ 4-->
+      <?php
+		}
+		?>
+    </div>
+  </div>
+  <!-- Hết danh mục -->
+  </div>
+  </div>
+  </div>
+  <?php
+}else{
+    ?>
+ echo"<script>let timerInterval
+Swal.fire({
+  icon: 'error',
+  title: 'Thông Báo',
+  html: 'Vui Lòng Đăng Nhập Để Xem!</br>Thông Báo Sẽ Đóng Trong <b></b>',
+  timer: 2000,
+  timerProgressBar: true,
+  didOpen: () => {
+    Swal.showLoading()
+    timerInterval = setInterval(() => {
+      const content = Swal.getHtmlContainer()
+      if (content) {
+        const b = content.querySelector('b')
+        if (b) {
+          b.textContent = Swal.getTimerLeft()
+        }
+      }
+    }, 100)
+  },
+  willClose: () => {
+    clearInterval(timerInterval)
+  }
+}).then((result) => {
+  /* Read more about handling dismissals below */
+  if (result.dismiss === Swal.DismissReason.timer) {
+    console.log('I was closed by the timer')
+  }
+});
+ setTimeout(() => {
+    location.href = '/dang-nhap';
+    }, 2000);
+</script>";
+	exit;
+}
+
+    <?php
+}
+?>
+<!-- Hết container -->
+<?php 
+require_once __DIR__."/../../theme/footer.php";
+?>
